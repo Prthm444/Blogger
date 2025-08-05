@@ -3,12 +3,13 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import UserRouter from "./routes/User.routes.js";
 import BlogRouter from "./routes/Blog.routes.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
-
+console.log(process.env.CORS_ORIGIN);
 app.use(
 	cors({
-		origin: "http://localhost:5173",
+		origin: process.env.CORS_ORIGIN,
 		credentials: true,
 	})
 );

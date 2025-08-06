@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const CreateBlogPage = () => {
 	const SERVER_URL = import.meta.env.VITE_SERVER_URL;
@@ -57,6 +58,15 @@ const CreateBlogPage = () => {
 			setSaving(false);
 		}
 	};
+
+	const user = useSelector((state) => state.user.user);
+	if (!user) {
+		return (
+			<div className="min-h-screen flex items-center justify-center bg-gray-900 text-gray-100 px-6">
+				<h1 className="text-xl md:text-2xl font-semibold text-center mt-24">User not logged in. Please log in to see your blogs.</h1>
+			</div>
+		);
+	}
 
 	return (
 		<div className="min-h-screen bg-gray-900 text-gray-100 py-12 px-6 md:px-12 max-w-3xl mx-auto">
